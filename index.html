@@ -5,79 +5,128 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Portfolio</title>
   <style>
+    :root{
+      --bg: #ffffff;
+      --text: #222222;
+      --muted: #6b7280;
+      --brand: #0b4ea2; /* header */
+      --accent: #ff7a59; /* buttons/links */
+      --card: #f7f9fc;
+      --container-width: 900px;
+    }
+
+    *{box-sizing: border-box}
+
     body {
-      font-family: Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       margin: 0;
       padding: 0;
       line-height: 1.6;
-      color: #333;
+      color: var(--text);
+      background: var(--bg);
     }
 
     header {
-      background: #2c3e50;
+      background: var(--brand);
       color: white;
-      padding: 20px 40px;
+      padding: 28px 20px;
+      box-shadow: 0 2px 6px rgba(11,78,162,0.12);
+    }
+
+    .header-inner{
+      max-width: var(--container-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand h1{
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: -0.5px;
+    }
+
+    .brand p{
+      margin: 4px 0 0 0;
+      font-size: 14px;
+      color: rgba(255,255,255,0.92);
+      opacity: 0.95;
     }
 
     nav a {
-      color: white;
+      color: rgba(255,255,255,0.95);
       text-decoration: none;
-      margin-left: 15px;
+      margin-left: 18px;
+      font-weight: 600;
+      font-size: 14px;
     }
+
+    .nav-group{display:flex;align-items:center}
 
     .container {
-      width: 80%;
+      max-width: var(--container-width);
       margin: 0 auto;
-      padding: 40px 0;
+      padding: 48px 20px;
     }
 
-    section {
-      margin-bottom: 40px;
-    }
+    section {margin-bottom: 48px}
 
-    h1, h2 {
-      color: #2c3e50;
-    }
+    h2 {color: var(--brand); margin-top: 0}
 
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
+    .skills {display:flex; flex-wrap:wrap; gap:10px}
 
-    .skills span {
-      background: #eaf2ff;
-      padding: 8px 12px;
-      border-radius: 5px;
-    }
+    .skills span{background:#eaf2ff;padding:8px 12px;border-radius:6px;color:var(--brand);font-weight:600}
 
-    .resume-link {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 15px;
-      background: #2c3e50;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-    }
+    .btn{display:inline-block;padding:10px 14px;border-radius:8px;text-decoration:none}
 
-    .resume-box {
-      background: #f7f9fc;
-      padding: 20px;
-      border-left: 5px solid #2c3e50;
-      border-radius: 5px;
+    .btn-primary{background:var(--accent);color:white}
+
+    .resume-box{background:var(--card);padding:20px;border-left:5px solid var(--brand);border-radius:6px}
+
+    /* Projects */
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+
+    .project-card{background:white;border:1px solid #e6edf5;border-radius:8px;padding:16px;box-shadow:0 1px 4px rgba(16,24,40,0.04)}
+
+    .project-thumb{height:120px;border-radius:6px;background:linear-gradient(90deg, #e6f0ff, #f7fbff);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700}
+
+    .project-meta{margin-top:12px}
+
+    .contact-links a{margin-right:12px;color:var(--brand);text-decoration:none;font-weight:600}
+
+    footer{padding:24px 20px;text-align:center;color:var(--muted);font-size:14px}
+
+    @media (max-width:640px){
+      .brand h1{font-size:20px}
+      nav a{display:none}
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Charles D</h1>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#resume">Resume</a>
-    </nav>
+    <div class="header-inner">
+      <div class="brand">
+        <h1>Charles D</h1>
+        <p>Data enthusiast · Analytics · Machine Learning</p>
+      </div>
+
+      <div class="nav-group">
+        <nav>
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#resume">Resume</a>
+        </nav>
+      </div>
+    </div>
   </header>
 
   <main>
@@ -104,13 +153,55 @@
       </div>
     </section>
 
+    <section id="projects" class="container">
+      <h2>Projects</h2>
+      <p>Selected projects that showcase applied analysis, modelling and visualization.</p>
+      <div class="projects-grid">
+        <article class="project-card">
+          <div class="project-thumb">Project 1</div>
+          <div class="project-meta">
+            <h3>Sales Forecasting</h3>
+            <p class="muted">Time-series forecasting of retail sales using ARIMA and XGBoost.</p>
+            <p><a class="btn btn-primary" href="#">View</a> <a class="contact-link" href="#">Code</a></p>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-thumb">Project 2</div>
+          <div class="project-meta">
+            <h3>Customer Segmentation</h3>
+            <p class="muted">Clustering and profiling to identify high-value customer segments.</p>
+            <p><a class="btn btn-primary" href="#">View</a> <a class="contact-link" href="#">Code</a></p>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-thumb">Project 3</div>
+          <div class="project-meta">
+            <h3>Interactive Dashboard</h3>
+            <p class="muted">A visualization dashboard built with Plotly Dash / Streamlit.</p>
+            <p><a class="btn btn-primary" href="#">View</a> <a class="contact-link" href="#">Code</a></p>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section id="resume" class="container">
       <h2>Resume</h2>
       <div class="resume-box">
         <p>Here is a downloadable copy of my resume for review.</p>
-        <a class="resume-link" href="Charles_Degan_Resume.docx" download>Download Resume</a>
+        <a class="resume-link btn btn-primary" href="Charles_Degan_Resume.docx" download>Download Resume</a>
+        <div style="margin-top:12px" class="contact-links">
+          <a href="mailto:charles@example.com">charles@example.com</a>
+          <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/your-github" target="_blank" rel="noopener">GitHub</a>
+        </div>
       </div>
     </section>
+
+    <footer>
+      © <span id="year">2026</span> Charles D — Built with focus on data and clarity.
+    </footer>
   </main>
 </body>
 </html>
